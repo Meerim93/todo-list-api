@@ -2,31 +2,30 @@ package qa.meerim.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class HelloController {
-    @GetMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
+
+    private List<String> todoList;
+
+    public HelloController() {
+        todoList = new ArrayList<>();
     }
 
-    @GetMapping("/meri")
-    public String meriGet() {
-        return "Hi, my name is Meri and this is a GET request";
+    @GetMapping("/{taskIndex}")
+    public String getTaskByIndex(@PathVariable int taskIndex) {
+        if (taskIndex >= todoList.size()) {
+            return "The task at this index doesn't exist";
+        } else {
+            return todoList.get(taskIndex);
+        }
     }
 
-    @PostMapping("/meri")
-    public String meriPost() {
-        return "Hi, my name is Meri and this is a POST request";
+    @PostMapping("/")
+    public String addTask(@RequestBody String task) {
+        todoList.add(task);
+        return task;
     }
-
-    @PutMapping("/meri")
-    public String meriPut() {
-        return "Hi, my name is Meri and this is a PUT request";
-    }
-
-    @DeleteMapping("/meri")
-    public String meriDelete() {
-        return "Hi, my name is Meri and this is a DELETE request";
-    }
-
 }
