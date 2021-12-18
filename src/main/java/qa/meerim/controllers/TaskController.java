@@ -61,5 +61,14 @@ public class TaskController {
 
     // create an endpoint to delete a specific task
     // the method should return whether the task was deleted (true or false)
-    // to test, use http://127.0.0.1:8080/<index>
+    @DeleteMapping("/{taskIndex}")
+    public Task deleteTask(@PathVariable int taskIndex) {
+        if (taskIndex >= todoList.size()) {
+            throw new IllegalArgumentException("The task at " + taskIndex + " doesn't exist.");
+        } else {
+            Task taskToDelete = todoList.get(taskIndex);
+            taskToDelete.setDeleted(true);
+            return taskToDelete;
+        }
+    }
 }
