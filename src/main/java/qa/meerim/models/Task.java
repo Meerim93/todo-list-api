@@ -5,7 +5,6 @@ public class Task {
     private String text;
     // a field indicating if a task is completed
     private boolean isCompleted;
-    private boolean isDeleted;
     // creation datetime
 
     // completion datetime
@@ -35,11 +34,5 @@ public class Task {
 
     public void setIsCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-    public void setDeleted(boolean isDeleted){this.isDeleted=isDeleted;
     }
 }
