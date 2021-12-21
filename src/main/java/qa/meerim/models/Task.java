@@ -1,6 +1,10 @@
 package qa.meerim.models;
 
-public class Task {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
+
+public class Task implements Serializable {
     // add fields for tasks
     private String text;
     // a field indicating if a task is completed
@@ -8,12 +12,6 @@ public class Task {
     // creation datetime
 
     // completion datetime
-
-    // create constructor that accepts 1 parameter - String text
-    public Task(String text) {
-        setText(text);
-        setIsCompleted(false);
-    }
 
     // create getters and setters
     public String getText() {
@@ -28,11 +26,12 @@ public class Task {
         }
     }
 
+    @JsonProperty(value = "isCompleted")
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setIsCompleted(boolean isCompleted) {
-        this.isCompleted = isCompleted;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 }

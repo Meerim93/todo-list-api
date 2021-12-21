@@ -20,10 +20,8 @@ public class TaskController {
         return todoList;
     }
 
-
     @PostMapping("/")
-    public Task addTask(@RequestBody String text) {
-        Task task = new Task(text);
+    public Task addTask(@RequestBody Task task) {
         todoList.add(task);
         return task;
     }
@@ -37,25 +35,13 @@ public class TaskController {
         }
     }
 
-    @PostMapping("/{taskIndex}")
-    public Task updateTaskByIndex(@PathVariable int taskIndex) {
-        if (taskIndex >= todoList.size()) {
-            throw new IllegalArgumentException("The task at index " + taskIndex + " doesn't exist.");
-        } else {
-            Task taskToUpdate = todoList.get(taskIndex);
-            taskToUpdate.setIsCompleted(true);
-            return taskToUpdate;
-        }
-    }
-
     @PutMapping("/{taskIndex}")
-    public Task updateTaskByIndex(@PathVariable int taskIndex, @RequestBody String text) {
+    public Task updateTaskByIndex(@PathVariable int taskIndex, @RequestBody Task updatedTask) {
         if (taskIndex >= todoList.size()) {
             throw new IllegalArgumentException("The task at index " + taskIndex + " doesn't exist.");
         } else {
-            Task taskToUpdate = todoList.get(taskIndex);
-            taskToUpdate.setText(text);
-            return taskToUpdate;
+            todoList.add(taskIndex, updatedTask);
+            return updatedTask;
         }
     }
 
@@ -64,8 +50,8 @@ public class TaskController {
         if (taskIndex >= todoList.size()) {
             throw new IllegalArgumentException("The task at " + taskIndex + " doesn't exist.");
         } else {
-           todoList.remove(taskIndex);
-           return true;
+            todoList.remove(taskIndex);
+            return true;
         }
     }
 }
