@@ -13,6 +13,15 @@ public class Task implements Serializable {
 
     // completion datetime
 
+    public Task() {
+    }
+
+    public Task(String text, boolean isCompleted) {
+        setText(text);
+        setCompleted(isCompleted);
+    }
+
+
     // create getters and setters
     public String getText() {
         return text;
