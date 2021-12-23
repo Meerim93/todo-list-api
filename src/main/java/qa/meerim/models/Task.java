@@ -43,4 +43,12 @@ public class Task implements Serializable {
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "text='" + text + '\'' +
+                ", isCompleted=" + isCompleted +
+                '}';
+    }
 }

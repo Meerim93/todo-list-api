@@ -73,9 +73,14 @@ class TaskServiceTest {
     @Test
     void deleteTask() {
         // Arrange
+        Task initialTask = new Task("my task", true);
+        taskService.addTask(initialTask);
 
         // Act
+        Task deletedTask = taskService.deleteTask(0);
 
         // Assert
+        Assertions.assertTrue(taskService.getTodoList().isEmpty());
+        Assertions.assertEquals(initialTask, deletedTask);
     }
 }
